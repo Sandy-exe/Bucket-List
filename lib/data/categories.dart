@@ -18,5 +18,4 @@ const categories = {
     'Other',
     Color(0xFFefe6dd),
   ),
-
 };
