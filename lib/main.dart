@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_gdsc/screens/homePage.dart';
 import 'package:google_fonts/google_fonts.dart';
+// import 'package:firebase_options.dart';
 
 
 
@@ -17,7 +18,7 @@ Future<void> main() async {
             projectId: "to-do-app-b3a5a"));
             
   } else {
-    Firebase.initializeApp();
+  await Firebase.initializeApp();
   }
   runApp(const MyApp());
 }
