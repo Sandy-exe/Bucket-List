@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.to_do_gdsc">
+    package="com.example.to_do_gdsc">   
+        <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="to_do_gdsc"
         android:name="${applicationName}"
