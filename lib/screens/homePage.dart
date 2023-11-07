@@ -223,15 +223,12 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(
-            height: 90,
-          ),
-          Image.asset('assets/JJK_gang.png'),
-          const SizedBox(
-            height: 60,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(50.0, 50.0, 50.0, 0.0),
+            child: Image.asset('assets/Denji.png'),
           ),
           Text(
-            'Create your first to-do list...',
+            'Create your first task...',
             style: GoogleFonts.poppins(
               textStyle: const TextStyle(
                 fontSize: 20,
@@ -241,7 +238,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
@@ -258,7 +255,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
             label: Text(
-              'New List',
+              'Add Task',
               style: GoogleFonts.poppins(
                 textStyle: const TextStyle(
                   color: Colors.white,
@@ -343,18 +340,25 @@ class _HomePageState extends State<HomePage> {
                 ? showDialogBox()
                 : Padding(
                     padding: const EdgeInsets.all(16),
-                    child: ListView.separated(
-                      itemBuilder: (context, index) => tiles(
-                        title: toDoList[index].title,
-                        category: toDoList[index].category,
-                        date: toDoList[index].dateTime,
-                        onRemove: () => _removeItem(toDoList[index].id),
-                      ),
-                      separatorBuilder: ((context, index) => const SizedBox(
-                            height: 20,
-                          )),
-                      itemCount: toDoList.length,
-                    ),
+                    child: Column(
+                      children: [
+                        Image.asset('assets/JJK_gang.png'), // This is the image
+                        Expanded(
+                          child: ListView.separated(
+                            itemBuilder: (context, index) => tiles(
+                              title: toDoList[index].title,
+                              category: toDoList[index].category,
+                              date: toDoList[index].dateTime,
+                              onRemove: () => _removeItem(toDoList[index].id),
+                            ),
+                            separatorBuilder: ((context, index) => const SizedBox(
+                                  height: 20,
+                                )),
+                            itemCount: toDoList.length,
+                          ),
+                        ),
+                      ],
+                    )
                   ),
             toDoListPinned.isEmpty
                 ? showDialogBox()
