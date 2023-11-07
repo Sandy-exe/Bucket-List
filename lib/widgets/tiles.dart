@@ -34,9 +34,9 @@ class tiles extends StatelessWidget {
               ),
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 20,
-                    color: Colors.black,
+                    color: category.textColor,
                     fontWeight: FontWeight.w400),
               ),
               const SizedBox(height: 15),
@@ -56,14 +56,15 @@ class tiles extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 20),
-                  const Icon(
+                  Icon(
                     Icons.calendar_month_outlined,
                     size: 20,
+                    color:category.textColor,
                   ),
                   const SizedBox(width: 4),
                   Text(
                     DateFormat('yyyy-MM-dd').format(date),
-                    style: const TextStyle(color: Colors.black),
+                    style: TextStyle(color: category.textColor),
                   ),
                 ],
               ),
@@ -76,9 +77,11 @@ class tiles extends StatelessWidget {
               ),
               IconButton(
                   onPressed: onRemove,
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.check_box_outline_blank,
                     size: 40,
+                    color: category.textColor,
+                    weight: 2,
                   ))
             ],
           ),

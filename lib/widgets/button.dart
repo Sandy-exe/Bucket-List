@@ -12,7 +12,7 @@ class ColorChangingButton extends StatefulWidget {
 
 class _ColorChangingButtonState extends State<ColorChangingButton> {
   int _selectedButtonIndex = 0;
-  final List<String> _text = ['Personal', 'Work', 'Finance', 'Other'];
+  final List<String> _text = ['Myself', 'Work', 'Other'];
 
   void _selectButton(int index) {
     setState(() {
@@ -28,25 +28,24 @@ class _ColorChangingButtonState extends State<ColorChangingButton> {
         Row(
           children: [
             const SizedBox(
-              width: 14.5,
+              width: 30,
             ),
             _buildButton(0),
             const SizedBox(
-              width: 29,
+              width: 30,
             ),
             _buildButton(1),
           ],
         ),
+        const SizedBox(
+          height: 15,
+        ),
         Row(
           children: [
             const SizedBox(
-              width: 20,
+              width: 85,
             ),
             _buildButton(2),
-            const SizedBox(
-              width: 30,
-            ),
-            _buildButton(3),
           ],
         )
       ],

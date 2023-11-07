@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         textTheme: GoogleFonts.poppinsTextTheme(),
+        
       ),
       home: const HomePage(),
     );

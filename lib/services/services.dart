@@ -24,11 +24,9 @@ class Services {
     final List<DocumentSnapshot> documents = snapshot.docs;
     for (DocumentSnapshot element in documents) {
       Categories category;
-      if (element["category"] == "Personal") {
-        category = Categories.Personal;
-      } else if (element["category"] == "Finance") {
-        category = Categories.Finance;
-      } else if (element["category"] == "Work") {
+      if (element["category"] == "Myself") {
+        category = Categories.Myself;
+      }  else if (element["category"] == "Work") {
         category = Categories.Work;
       } else {
         category = Categories.Other;

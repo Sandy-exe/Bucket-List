@@ -34,7 +34,8 @@ class _HomePageState extends State<HomePage> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  Future<void> readTasks() async {//readTasks() is a function that reads the tasks from the database and updates the list
+  Future<void> readTasks() async {
+    //readTasks() is a function that reads the tasks from the database and updates the list
     List<ToDoItem> temp = await _s.read() as List<ToDoItem>;
     List<ToDoItem> dupTasks = [];
     List<ToDoItem> dupPinedTasks = [];
@@ -44,14 +45,16 @@ class _HomePageState extends State<HomePage> {
       }
       dupTasks.add(element);
     }
-    setState(() {   //setState() is a function that updates the UI
+    setState(() {
+      //setState() is a function that updates the UI
       toDoList = dupTasks;
       toDoListPinned = dupPinedTasks;
     });
   }
 
   @override
-  void initState() { //initState() is a function that is called when the widget is first created
+  void initState() {
+    //initState() is a function that is called when the widget is first created
     readTasks(); //Basic Constructor like operations are done here
 
     super.initState();
@@ -60,7 +63,7 @@ class _HomePageState extends State<HomePage> {
   Future<dynamic> showDia() {
     String textTitle = '';
     TextEditingController dateinput = TextEditingController();
-    var _selectedCategory = categories[Categories.Personal]!;
+    var _selectedCategory = categories[Categories.Myself]!;
     int _selectedButtonIndex = 0;
     bool pin = false;
     void updatePin(bool contd) {
@@ -136,7 +139,10 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide.none,
                     ),
-                    icon: const Icon(Icons.calendar_today),
+                    icon: const Icon(
+                      Icons.calendar_today,
+                      color: Colors.black,
+                    ),
                     hintText: "Enter Date",
                   ),
                   readOnly: true,
@@ -146,6 +152,22 @@ class _HomePageState extends State<HomePage> {
                       initialDate: DateTime.now(),
                       firstDate: DateTime(2000),
                       lastDate: DateTime(2101),
+                      builder: (BuildContext context, Widget? child) {
+                        return Theme(
+                          data: ThemeData.light().copyWith(
+                            colorScheme: const ColorScheme.light(
+                              primary: Colors.black, // header background color
+                              onPrimary: Colors.white, // header text color
+                              surface: Colors.white, // body background color
+                              onSurface: Color.fromARGB(
+                                  255, 173, 145, 145), // body text color
+                            ),
+                            dialogBackgroundColor:
+                                Colors.white, // background color
+                          ),
+                          child: child!,
+                        );
+                      },
                     );
 
                     if (pickedDate != null) {
@@ -169,7 +191,10 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: const Text('Cancel',
+                  style: TextStyle(
+                    color: Colors.black,
+                  )),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -185,15 +210,12 @@ class _HomePageState extends State<HomePage> {
 
                 setState(() {
                   if (_selectedButtonIndex == 0) {
-                    _selectedCategory = categories[Categories.Personal]!;
+                    _selectedCategory = categories[Categories.Myself]!;
                   }
                   if (_selectedButtonIndex == 1) {
                     _selectedCategory = categories[Categories.Work]!;
                   }
                   if (_selectedButtonIndex == 2) {
-                    _selectedCategory = categories[Categories.Finance]!;
-                  }
-                  if (_selectedButtonIndex == 3) {
                     _selectedCategory = categories[Categories.Other]!;
                   }
 
@@ -272,19 +294,22 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(  
+      child: Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(120.0),
           child: AppBar(
             leading: SizedBox(
               height: 20,
               width: 20,
-              child: Image.asset(
-                'assets/appBarLogo.png',
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Image.asset(
+                  'assets/ToDO.png',
+                ),
               ),
             ),
             title: Text(
-              'DooIt',
+              'ToDo App',
               style: GoogleFonts.poppins(
                 textStyle: const TextStyle(
                   fontSize: 25,
@@ -308,7 +333,7 @@ class _HomePageState extends State<HomePage> {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "All List",
+                      "My Tasks",
                       style: GoogleFonts.poppins(
                         textStyle: const TextStyle(
                           fontWeight: FontWeight.bold,
@@ -321,7 +346,7 @@ class _HomePageState extends State<HomePage> {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "Pinned",
+                      "Pinned Tasks",
                       style: GoogleFonts.poppins(
                         textStyle: const TextStyle(
                           fontWeight: FontWeight.bold,
@@ -340,10 +365,15 @@ class _HomePageState extends State<HomePage> {
                 ? showDialogBox()
                 : Padding(
                     padding: const EdgeInsets.all(16),
-                    child: Column(
+                    child: Stack(
                       children: [
-                        Image.asset('assets/JJK_gang.png'), // This is the image
-                        Expanded(
+                        // This is the image
+                        Positioned(
+                          top:
+                              145, // This positions the ListView 5 pixels from the top of the Stack
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
                           child: ListView.separated(
                             itemBuilder: (context, index) => tiles(
                               title: toDoList[index].title,
@@ -351,32 +381,47 @@ class _HomePageState extends State<HomePage> {
                               date: toDoList[index].dateTime,
                               onRemove: () => _removeItem(toDoList[index].id),
                             ),
-                            separatorBuilder: ((context, index) => const SizedBox(
+                            separatorBuilder: ((context, index) =>
+                                const SizedBox(
                                   height: 20,
                                 )),
                             itemCount: toDoList.length,
                           ),
                         ),
+                        Image.asset('assets/JJK_gang.png'),
                       ],
-                    )
+                    ),
                   ),
             toDoListPinned.isEmpty
                 ? showDialogBox()
                 : Padding(
                     padding: const EdgeInsets.all(16),
-                    child: ListView.separated(
-                      itemBuilder: (context, index) => tiles(
-                        title: toDoListPinned[index].title,
-                        category: toDoListPinned[index].category,
-                        date: toDoListPinned[index].dateTime,
-                        onRemove: () => _removeItem(toDoListPinned[index].id),
-                      ),
-                      separatorBuilder: ((context, index) => const SizedBox(
-                            height: 20,
-                          )),
-                      itemCount: toDoListPinned.length,
-                    ),
-                  ),
+                    child: Stack(
+                      children: [
+                        // This is the image
+                        Positioned(
+                          top: 145, // This positions the ListView 5 pixels from the top of the Stack
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          child: ListView.separated(
+                            itemBuilder: (context, index) => tiles(
+                              title: toDoListPinned[index].title,
+                              category: toDoListPinned[index].category,
+                              date: toDoListPinned[index].dateTime,
+                              onRemove: () =>
+                                  _removeItem(toDoListPinned[index].id),
+                            ),
+                            separatorBuilder: ((context, index) =>
+                                const SizedBox(
+                                  height: 20,
+                                )),
+                            itemCount: toDoListPinned.length,
+                          ),
+                        ),
+                        Image.asset('assets/JJK_gang.png'),
+                      ],
+                    )),
           ],
         ),
         floatingActionButton: toDoList.isEmpty
@@ -385,6 +430,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   showDia();
                 },
+                backgroundColor: Colors.black,
                 child: const Icon(Icons.add),
               ),
       ),
