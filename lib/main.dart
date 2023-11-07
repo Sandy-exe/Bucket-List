@@ -25,32 +25,15 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const primaryColor = Colors.black;
-    const primarySwatch = MaterialColor(
-      0xFF000000,
-      <int, Color>{
-        50: primaryColor,
-        100: primaryColor,
-        200: primaryColor,
-        300: primaryColor,
-        400: primaryColor,
-        500: primaryColor,
-        600: primaryColor,
-        700: primaryColor,
-        800: primaryColor,
-        900: primaryColor,
-      },
-    );
-
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'DooIt',
+      title: "My Todo-list",
       theme: ThemeData(
-        primarySwatch: primarySwatch,
         brightness: Brightness.light,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),

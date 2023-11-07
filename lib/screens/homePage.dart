@@ -12,7 +12,7 @@ import 'package:to_do_gdsc/widgets/tiles.dart';
 import '../services/services.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -226,7 +226,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 90,
           ),
-          Image.asset('assets/emptyimg.png'),
+          Image.asset('assets/JJK_gang.png'),
           const SizedBox(
             height: 60,
           ),
@@ -275,7 +275,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
+      child: Scaffold(  
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(120.0),
           child: AppBar(
