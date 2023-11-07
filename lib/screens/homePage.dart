@@ -309,7 +309,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             title: Text(
-              'ToDo App',
+              'To-Do APP',
               style: GoogleFonts.poppins(
                 textStyle: const TextStyle(
                   fontSize: 25,

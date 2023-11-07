@@ -72,17 +72,17 @@ class tiles extends StatelessWidget {
           ),
           trailing: Column(
             children: [
-              const SizedBox(
-                height: 6,
-              ),
-              IconButton(
-                  onPressed: onRemove,
-                  icon: Icon(
-                    Icons.check_box_outline_blank,
-                    size: 40,
-                    color: category.textColor,
-                    weight: 2,
-                  ))
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 3,horizontal: 20),
+                child: IconButton(
+                    onPressed: onRemove,
+                    icon: Icon(
+                      Icons.exit_to_app_rounded,
+                      size: 50,
+                      color: category.textColor,
+                      weight: 2,
+                    )),
+              )
             ],
           ),
         ),
