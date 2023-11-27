@@ -60,11 +60,15 @@ class _ColorChangingButtonState extends State<ColorChangingButton> {
       onPressed: () => _selectButton(index),
       style: ElevatedButton.styleFrom(
           backgroundColor: color,
+
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           )),
       child: Text(
         _text[index],
+        style: TextStyle(
+          color: isSelected ? Colors.white : Colors.black,
+        ),
       ),
     );
   }

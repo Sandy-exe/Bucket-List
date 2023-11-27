@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                               onPrimary: Colors.white, // header text color
                               surface: Colors.white, // body background color
                               onSurface: Color.fromARGB(
-                                  255, 173, 145, 145), // body text color
+                                  255, 0, 0, 0), // body text color
                             ),
                             dialogBackgroundColor:
                                 Colors.white, // background color
@@ -182,6 +182,7 @@ class _HomePageState extends State<HomePage> {
                 const Spacer(),
                 ColorChangingButton(
                   onButtonSelected: _updateSelectedButtonIndex,
+                  
                 ),
               ],
             ),
@@ -231,7 +232,12 @@ class _HomePageState extends State<HomePage> {
                 readTasks();
                 Navigator.of(context).pop();
               },
-              child: const Text('Submit'),
+              child: const Text(
+                'Submit',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                ),
             ),
           ],
         );
@@ -275,6 +281,8 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(
               Icons.add,
               color: Colors.white,
+
+
             ),
             label: Text(
               'Add Task',
@@ -323,6 +331,7 @@ class _HomePageState extends State<HomePage> {
             bottom: TabBar(
               indicatorPadding: const EdgeInsets.symmetric(horizontal: 16.0),
               unselectedLabelColor: Colors.grey,
+              labelColor: Colors.white,
               indicatorSize: TabBarIndicatorSize.tab,
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -368,9 +377,9 @@ class _HomePageState extends State<HomePage> {
                     child: Stack(
                       children: [
                         // This is the image
+                        
                         Positioned(
-                          top:
-                              145, // This positions the ListView 5 pixels from the top of the Stack
+                          top: 114, // This positions the ListView 5 pixels from the top of the Stack
                           left: 0,
                           right: 0,
                           bottom: 0,
@@ -389,6 +398,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Image.asset('assets/JJK_gang.png'),
+                        
                       ],
                     ),
                   ),
@@ -400,7 +410,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         // This is the image
                         Positioned(
-                          top: 145, // This positions the ListView 5 pixels from the top of the Stack
+                          top: 114, // This positions the ListView 5 pixels from the top of the Stack
                           left: 0,
                           right: 0,
                           bottom: 0,
@@ -431,7 +441,9 @@ class _HomePageState extends State<HomePage> {
                   showDia();
                 },
                 backgroundColor: Colors.black,
-                child: const Icon(Icons.add),
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.white,),
               ),
       ),
     );

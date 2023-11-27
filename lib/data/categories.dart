@@ -4,17 +4,17 @@ import 'package:to_do_gdsc/models/category.dart';
 const categories = {
   Categories.Myself: Category(
     'Myself',
-    Color(0xFFeedcda),
-    Color.fromARGB(255, 0, 0, 0),
+    Color.fromARGB(255, 52, 51, 51),
+    Color.fromARGB(255, 255, 255, 255),
   ),
   Categories.Work: Category(
     'Work',
-  Color(0xFF423c48),
+  Color(0xFF4A9487),
   Color.fromARGB(255, 255, 255, 255),
   ),
   Categories.Other: Category(
     'Other',
-    Color.fromARGB(255, 236, 182, 137),
-    Color.fromARGB(255, 0, 0, 0),
+    Color.fromARGB(255, 140, 79, 191),
+    Color.fromARGB(255, 255, 255, 255),
   ),
 };

@@ -18,73 +18,83 @@ class tiles extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black),
+        color: category.color,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Container(
-        decoration: BoxDecoration(
-            color: category.color, borderRadius: BorderRadius.circular(20)),
-        width: double.infinity,
-        height: 100,
-        child: ListTile(
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                title,
-                style: TextStyle(
-                    fontSize: 20,
-                    color: category.textColor,
-                    fontWeight: FontWeight.w400),
-              ),
-              const SizedBox(height: 15),
-              Row(
-                children: [
-                  SizedBox(
-                    height: 30,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: Text(category.title),
+      width: double.infinity,
+      height: 100,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 8,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: category.textColor,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(width: 20),
-                  Icon(
-                    Icons.calendar_month_outlined,
-                    size: 20,
-                    color:category.textColor,
+                ),
+                const SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 30,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: Text(
+                            category.title,
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 14),
+                      Icon(
+                        Icons.calendar_month_outlined,
+                        size: 20,
+                        color: category.textColor,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        DateFormat('yyyy-MM-dd').format(date),
+                        style: TextStyle(color: category.textColor,
+                        fontSize: 17),
+                      ),
+                      const SizedBox(width: 10),
+                    ],
                   ),
-                  const SizedBox(width: 4),
-                  Text(
-                    DateFormat('yyyy-MM-dd').format(date),
-                    style: TextStyle(color: category.textColor),
-                  ),
-                ],
+                ),
+              ],
+            ),
+            IconButton(
+              onPressed: onRemove,
+              icon: Icon(
+                Icons.exit_to_app_rounded,
+                size: 50,
+                color: category.textColor,
               ),
-            ],
-          ),
-          trailing: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 3,horizontal: 20),
-                child: IconButton(
-                    onPressed: onRemove,
-                    icon: Icon(
-                      Icons.exit_to_app_rounded,
-                      size: 50,
-                      color: category.textColor,
-                      weight: 2,
-                    )),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
