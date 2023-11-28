@@ -53,16 +53,19 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
 
-# flutter_icons:
-#   android: true
-#   ios: true
-#   image_path: "assets/Only_bucket.png"
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/Only_bucket.png"
 
-# flutter_native_splash:
-#   color: "#ffffff"
-#   image: "assets/logo.png"
-#   android: true
-#   ios: true
+flutter_native_splash:
+  color: "#ffffff"
+  image: "assets/LOGO_square.png"
+  android: true
+  ios: true
+  android_12:
+    color: "#ffffff"
+    image: "assets/LOGO_square.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -82,6 +85,7 @@ flutter:
     - assets/Denji.png
     - assets/logo.jpg
     - assets/Only_bucket.png
+    - assets/LOGO_square.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
