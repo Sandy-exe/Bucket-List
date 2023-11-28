@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_gdsc/screens/homePage.dart';
-import 'package:google_fonts/google_fonts.dart';
 // import 'package:firebase_options.dart';
 
 

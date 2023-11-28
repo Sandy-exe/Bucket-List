@@ -182,7 +182,6 @@ class _HomePageState extends State<HomePage> {
                 const Spacer(),
                 ColorChangingButton(
                   onButtonSelected: _updateSelectedButtonIndex,
-                  
                 ),
               ],
             ),
@@ -237,7 +236,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   color: Colors.white,
                 ),
-                ),
+              ),
             ),
           ],
         );
@@ -281,8 +280,6 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(
               Icons.add,
               color: Colors.white,
-
-
             ),
             label: Text(
               'Add Task',
@@ -303,8 +300,9 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(120.0),
+          preferredSize: const Size.fromHeight(50.0),
           child: AppBar(
             leading: SizedBox(
               height: 20,
@@ -312,12 +310,12 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Image.asset(
-                  'assets/ToDO.png',
+                  'assets/Only_bucket.png',
                 ),
               ),
             ),
             title: Text(
-              'To-Do APP',
+              'My Bucket List',
               style: GoogleFonts.poppins(
                 textStyle: const TextStyle(
                   fontSize: 25,
@@ -328,44 +326,6 @@ class _HomePageState extends State<HomePage> {
             ),
             elevation: 0,
             backgroundColor: Colors.white,
-            bottom: TabBar(
-              indicatorPadding: const EdgeInsets.symmetric(horizontal: 16.0),
-              unselectedLabelColor: Colors.grey,
-              labelColor: Colors.white,
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.black,
-              ),
-              tabs: [
-                Tab(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "My Tasks",
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Tab(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Pinned Tasks",
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ),
         ),
         body: TabBarView(
@@ -377,9 +337,10 @@ class _HomePageState extends State<HomePage> {
                     child: Stack(
                       children: [
                         // This is the image
-                        
+
                         Positioned(
-                          top: 114, // This positions the ListView 5 pixels from the top of the Stack
+                          top:
+                              114, // This positions the ListView 5 pixels from the top of the Stack
                           left: 0,
                           right: 0,
                           bottom: 0,
@@ -398,7 +359,6 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Image.asset('assets/JJK_gang.png'),
-                        
                       ],
                     ),
                   ),
@@ -410,7 +370,8 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         // This is the image
                         Positioned(
-                          top: 114, // This positions the ListView 5 pixels from the top of the Stack
+                          top:
+                              114, // This positions the ListView 5 pixels from the top of the Stack
                           left: 0,
                           right: 0,
                           bottom: 0,
@@ -443,8 +404,51 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor: Colors.black,
                 child: const Icon(
                   Icons.add,
-                  color: Colors.white,),
+                  color: Colors.white,
+                ),
               ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(bottom: 30),
+          child: TabBar(
+            dividerHeight: 0,
+            indicatorPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+            unselectedLabelColor: Colors.grey,
+            labelColor: Colors.white,
+            indicatorSize: TabBarIndicatorSize.tab,
+            indicator: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.black,
+            ),
+            tabs: [
+              Tab(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "My Tasks",
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Tab(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Pinned Tasks",
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
