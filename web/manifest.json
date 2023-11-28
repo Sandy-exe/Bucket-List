@@ -1,6 +1,6 @@
 {
-    "name": "to_do_gdsc",
-    "short_name": "to_do_gdsc",
+    "name": "bucket_list",
+    "short_name": "bucket_list",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

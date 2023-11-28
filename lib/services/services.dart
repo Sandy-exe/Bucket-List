@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:to_do_gdsc/data/categories.dart';
-import 'package:to_do_gdsc/models/category.dart';
-import 'package:to_do_gdsc/models/todolist.dart';
+import 'package:bucket_list/data/categories.dart';
+import 'package:bucket_list/models/category.dart';
+import 'package:bucket_list/models/todolist.dart';
 
 class Services {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -13,9 +13,10 @@ class Services {
       "id": newItem.id,
       "ispined": newItem.isPinned
     };
-    String docId = newItem.id;//randomly generated IDs are not recommended
-    final DocumentReference tasksRef = firestore.collection("tasks").doc(docId);//creating a reference object
-    await tasksRef.set(obj);//push the object
+    String docId = newItem.id; //randomly generated IDs are not recommended
+    final DocumentReference tasksRef =
+        firestore.collection("tasks").doc(docId); //creating a reference object
+    await tasksRef.set(obj); //push the object
   }
 
   Future<List> read() async {
@@ -26,7 +27,7 @@ class Services {
       Categories category;
       if (element["category"] == "Myself") {
         category = Categories.Myself;
-      }  else if (element["category"] == "Work") {
+      } else if (element["category"] == "Work") {
         category = Categories.Work;
       } else {
         category = Categories.Other;

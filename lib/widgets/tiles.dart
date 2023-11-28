@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:to_do_gdsc/models/category.dart';
+import 'package:bucket_list/models/category.dart';
 
 class tiles extends StatelessWidget {
   tiles(
@@ -77,8 +77,8 @@ class tiles extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         DateFormat('yyyy-MM-dd').format(date),
-                        style: TextStyle(color: category.textColor,
-                        fontSize: 17),
+                        style:
+                            TextStyle(color: category.textColor, fontSize: 17),
                       ),
                       const SizedBox(width: 10),
                     ],

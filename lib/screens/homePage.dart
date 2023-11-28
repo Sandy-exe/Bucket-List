@@ -2,12 +2,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
-import 'package:to_do_gdsc/data/categories.dart';
-import 'package:to_do_gdsc/models/category.dart';
-import 'package:to_do_gdsc/models/todolist.dart';
-import 'package:to_do_gdsc/widgets/button.dart';
-import 'package:to_do_gdsc/widgets/pin.dart';
-import 'package:to_do_gdsc/widgets/tiles.dart';
+import 'package:bucket_list/data/categories.dart';
+import 'package:bucket_list/models/category.dart';
+import 'package:bucket_list/models/todolist.dart';
+import 'package:bucket_list/widgets/button.dart';
+import 'package:bucket_list/widgets/pin.dart';
+import 'package:bucket_list/widgets/tiles.dart';
 
 import '../services/services.dart';
 

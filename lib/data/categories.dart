@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_gdsc/models/category.dart';
+import 'package:bucket_list/models/category.dart';
 
 const categories = {
   Categories.Myself: Category(
@@ -9,8 +9,8 @@ const categories = {
   ),
   Categories.Work: Category(
     'Work',
-  Color(0xFF4A9487),
-  Color.fromARGB(255, 255, 255, 255),
+    Color(0xFF4A9487),
+    Color.fromARGB(255, 255, 255, 255),
   ),
   Categories.Other: Category(
     'Other',

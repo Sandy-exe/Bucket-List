@@ -1,4 +1,4 @@
-package com.example.to_do_gdsc
+package com.example.bucket_list
 
 import io.flutter.embedding.android.FlutterActivity
 
