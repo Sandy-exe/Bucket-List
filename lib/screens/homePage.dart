@@ -1,7 +1,7 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-
+import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 import 'package:bucket_list/data/categories.dart';
 import 'package:bucket_list/models/category.dart';
 import 'package:bucket_list/models/todolist.dart';
@@ -63,6 +63,7 @@ class _HomePageState extends State<HomePage> {
   Future<dynamic> showDia() {
     String textTitle = '';
     TextEditingController dateinput = TextEditingController();
+    TextEditingController timeinput = TextEditingController();
     var _selectedCategory = categories[Categories.Myself]!;
     int _selectedButtonIndex = 0;
     bool pin = false;
@@ -103,7 +104,7 @@ class _HomePageState extends State<HomePage> {
           content: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadiusDirectional.circular(20)),
-            height: 270,
+            height: 320,
             child: Column(
               children: [
                 TextFormField(
@@ -147,33 +148,140 @@ class _HomePageState extends State<HomePage> {
                   ),
                   readOnly: true,
                   onTap: () async {
-                    DateTime? pickedDate = await showDatePicker(
+                    List<DateTime>? dateTimeList =
+                        await showOmniDateTimeRangePicker(
                       context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2000),
-                      lastDate: DateTime(2101),
-                      builder: (BuildContext context, Widget? child) {
-                        return Theme(
-                          data: ThemeData.light().copyWith(
-                            colorScheme: const ColorScheme.light(
-                              primary: Colors.black, // header background color
-                              onPrimary: Colors.white, // header text color
-                              surface: Colors.white, // body background color
-                              onSurface: Color.fromARGB(
-                                  255, 0, 0, 0), // body text color
+                      startInitialDate: DateTime.now(),
+                      startFirstDate:
+                          DateTime(1600).subtract(const Duration(days: 3652)),
+                      startLastDate: DateTime.now().add(
+                        const Duration(days: 3652),
+                      ),
+                      endInitialDate: DateTime.now(),
+                      endFirstDate:
+                          DateTime(1600).subtract(const Duration(days: 3652)),
+                      endLastDate: DateTime.now().add(
+                        const Duration(days: 3652),
+                      ),
+                      is24HourMode: false,
+                      isShowSeconds: false,
+                      minutesInterval: 1,
+                      secondsInterval: 1,
+                      borderRadius: const BorderRadius.all(Radius.circular(16)),
+                      constraints: const BoxConstraints(
+                        maxWidth: 350,
+                        maxHeight: 650,
+                      ),
+                      transitionBuilder: (context, anim1, anim2, child) {
+                        return FadeTransition(
+                          opacity: anim1.drive(
+                            Tween(
+                              begin: 0,
+                              end: 1,
                             ),
-                            dialogBackgroundColor:
-                                Colors.white, // background color
                           ),
-                          child: child!,
+                          child: child,
                         );
+                      },
+                      transitionDuration: const Duration(milliseconds: 200),
+                      barrierDismissible: true,
+                      selectableDayPredicate: (dateTime) {
+                        // Disable 25th Feb 2023
+                        if (dateTime == DateTime(2023, 2, 25)) {
+                          return false;
+                        } else {
+                          return true;
+                        }
+                      },
+                    );
+                    
+                    if (dateTimeList != null) {
+                      String formattedTime =
+                          DateFormat('kk:mm').format(dateTimeList[0]);
+                      String formattedDate =
+                          DateFormat('yyyy-MM-dd').format(dateTimeList[0]);
+                      setState(() {
+                        timeinput.text = formattedTime;
+                        dateinput.text = formattedDate;
+                      });
+                    }
+                  },
+                ),
+                const Spacer(),
+                TextField(
+                  controller: timeinput,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xFFD9D9D9),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide.none,
+                    ),
+                    icon: const Icon(
+                      Icons.access_time,
+                      color: Colors.black,
+                    ),
+                    hintText: "Enter Time",
+                  ),
+                  readOnly: true,
+                  onTap: () async {
+                    List<DateTime>? dateTimeList =
+                        await showOmniDateTimeRangePicker(
+                      context: context,
+                      startInitialDate: DateTime.now(),
+                      startFirstDate:
+                          DateTime(1600).subtract(const Duration(days: 3652)),
+                      startLastDate: DateTime.now().add(
+                        const Duration(days: 3652),
+                      ),
+                      endInitialDate: DateTime.now(),
+                      endFirstDate:
+                          DateTime(1600).subtract(const Duration(days: 3652)),
+                      endLastDate: DateTime.now().add(
+                        const Duration(days: 3652),
+                      ),
+                      is24HourMode: false,
+                      isShowSeconds: false,
+                      minutesInterval: 1,
+                      secondsInterval: 1,
+                      borderRadius: const BorderRadius.all(Radius.circular(16)),
+                      constraints: const BoxConstraints(
+                        maxWidth: 350,
+                        maxHeight: 650,
+                      ),
+                      transitionBuilder: (context, anim1, anim2, child) {
+                        return FadeTransition(
+                          opacity: anim1.drive(
+                            Tween(
+                              begin: 0,
+                              end: 1,
+                            ),
+                          ),
+                          child: child,
+                        );
+                      },
+                      transitionDuration: const Duration(milliseconds: 200),
+                      barrierDismissible: true,
+                      selectableDayPredicate: (dateTime) {
+                        // Disable 25th Feb 2023
+                        if (dateTime == DateTime(2023, 2, 25)) {
+                          return false;
+                        } else {
+                          return true;
+                        }
                       },
                     );
 
-                    if (pickedDate != null) {
-                      String formattedDate =
-                          DateFormat('yyyy-MM-dd').format(pickedDate);
+                    
+                    if (dateTimeList != null) {
+                      String formattedTime = DateFormat('kk:mm').format(dateTimeList[0]);
+                      String formattedDate = DateFormat('yyyy-MM-dd').format(dateTimeList[0]);
                       setState(() {
+                        timeinput.text = formattedTime;
                         dateinput.text = formattedDate;
                       });
                     }
