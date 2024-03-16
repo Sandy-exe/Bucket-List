@@ -1,3 +1,4 @@
+import 'package:bucket_list/services/notification_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:bucket_list/screens/homePage.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (kIsWeb) {
-    print("shit");
     await Firebase.initializeApp(
         options: const FirebaseOptions(
             apiKey: "AIzaSyBdRZoqyW80jeyEktK--QXgpHYCkWwh8BI",
@@ -22,6 +22,8 @@ Future<void> main() async {
             messagingSenderId: "882653867771",
             projectId: "to-do-app-b3a5a"));
   }
+  //notification
+  await NotificationService.initializeNotification();
   runApp(const MyApp());
 }
 

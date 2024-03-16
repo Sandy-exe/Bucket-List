@@ -1,3 +1,4 @@
+import 'package:bucket_list/services/notification_services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -101,197 +102,199 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          content: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadiusDirectional.circular(20)),
-            height: 320,
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Title',
-                    filled: true,
-                    fillColor: const Color(0xFFD9D9D9),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
+          content: SingleChildScrollView(
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadiusDirectional.circular(20)),
+              height: 320,
+              child: Column(
+                children: [
+                  TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'Title',
+                      filled: true,
+                      fillColor: const Color(0xFFD9D9D9),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide.none,
-                    ),
+                    onChanged: (value) {
+                      textTitle = value;
+                    },
+                    textCapitalization: TextCapitalization.sentences,
                   ),
-                  onChanged: (value) {
-                    textTitle = value;
-                  },
-                  textCapitalization: TextCapitalization.sentences,
-                ),
-                const Spacer(),
-                TextField(
-                  controller: dateinput,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: const Color(0xFFD9D9D9),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide.none,
-                    ),
-                    icon: const Icon(
-                      Icons.calendar_today,
-                      color: Colors.black,
-                    ),
-                    hintText: "Enter Date",
-                  ),
-                  readOnly: true,
-                  onTap: () async {
-                    List<DateTime>? dateTimeList =
-                        await showOmniDateTimeRangePicker(
-                      context: context,
-                      startInitialDate: DateTime.now(),
-                      startFirstDate:
-                          DateTime(1600).subtract(const Duration(days: 3652)),
-                      startLastDate: DateTime.now().add(
-                        const Duration(days: 3652),
+                  const Spacer(),
+                  TextField(
+                    controller: dateinput,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xFFD9D9D9),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
                       ),
-                      endInitialDate: DateTime.now(),
-                      endFirstDate:
-                          DateTime(1600).subtract(const Duration(days: 3652)),
-                      endLastDate: DateTime.now().add(
-                        const Duration(days: 3652),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none,
                       ),
-                      is24HourMode: false,
-                      isShowSeconds: false,
-                      minutesInterval: 1,
-                      secondsInterval: 1,
-                      borderRadius: const BorderRadius.all(Radius.circular(16)),
-                      constraints: const BoxConstraints(
-                        maxWidth: 350,
-                        maxHeight: 650,
+                      icon: const Icon(
+                        Icons.calendar_today,
+                        color: Colors.black,
                       ),
-                      transitionBuilder: (context, anim1, anim2, child) {
-                        return FadeTransition(
-                          opacity: anim1.drive(
-                            Tween(
-                              begin: 0,
-                              end: 1,
+                      hintText: "Enter Date",
+                    ),
+                    readOnly: true,
+                    onTap: () async {
+                      List<DateTime>? dateTimeList =
+                          await showOmniDateTimeRangePicker(
+                        context: context,
+                        startInitialDate: DateTime.now(),
+                        startFirstDate:
+                            DateTime(1600).subtract(const Duration(days: 3652)),
+                        startLastDate: DateTime.now().add(
+                          const Duration(days: 3652),
+                        ),
+                        endInitialDate: DateTime.now(),
+                        endFirstDate:
+                            DateTime(1600).subtract(const Duration(days: 3652)),
+                        endLastDate: DateTime.now().add(
+                          const Duration(days: 3652),
+                        ),
+                        is24HourMode: false,
+                        isShowSeconds: false,
+                        minutesInterval: 1,
+                        secondsInterval: 1,
+                        borderRadius: const BorderRadius.all(Radius.circular(16)),
+                        constraints: const BoxConstraints(
+                          maxWidth: 350,
+                          maxHeight: 650,
+                        ),
+                        transitionBuilder: (context, anim1, anim2, child) {
+                          return FadeTransition(
+                            opacity: anim1.drive(
+                              Tween(
+                                begin: 0,
+                                end: 1,
+                              ),
                             ),
-                          ),
-                          child: child,
-                        );
-                      },
-                      transitionDuration: const Duration(milliseconds: 200),
-                      barrierDismissible: true,
-                      selectableDayPredicate: (dateTime) {
-                        // Disable 25th Feb 2023
-                        if (dateTime == DateTime(2023, 2, 25)) {
-                          return false;
-                        } else {
-                          return true;
-                        }
-                      },
-                    );
-                    
-                    if (dateTimeList != null) {
-                      String formattedTime =
-                          DateFormat('kk:mm').format(dateTimeList[0]);
-                      String formattedDate =
-                          DateFormat('yyyy-MM-dd').format(dateTimeList[0]);
-                      setState(() {
-                        timeinput.text = formattedTime;
-                        dateinput.text = formattedDate;
-                      });
-                    }
-                  },
-                ),
-                const Spacer(),
-                TextField(
-                  controller: timeinput,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: const Color(0xFFD9D9D9),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide.none,
-                    ),
-                    icon: const Icon(
-                      Icons.access_time,
-                      color: Colors.black,
-                    ),
-                    hintText: "Enter Time",
+                            child: child,
+                          );
+                        },
+                        transitionDuration: const Duration(milliseconds: 200),
+                        barrierDismissible: true,
+                        selectableDayPredicate: (dateTime) {
+                          // Disable 25th Feb 2023
+                          if (dateTime == DateTime(2023, 2, 25)) {
+                            return false;
+                          } else {
+                            return true;
+                          }
+                        },
+                      );
+                      
+                      if (dateTimeList != null) {
+                        String formattedTime =
+                            DateFormat('kk:mm').format(dateTimeList[0]);
+                        String formattedDate =
+                            DateFormat('yyyy-MM-dd').format(dateTimeList[0]);
+                        setState(() {
+                          timeinput.text = formattedTime;
+                          dateinput.text = formattedDate;
+                        });
+                      }
+                    },
                   ),
-                  readOnly: true,
-                  onTap: () async {
-                    List<DateTime>? dateTimeList =
-                        await showOmniDateTimeRangePicker(
-                      context: context,
-                      startInitialDate: DateTime.now(),
-                      startFirstDate:
-                          DateTime(1600).subtract(const Duration(days: 3652)),
-                      startLastDate: DateTime.now().add(
-                        const Duration(days: 3652),
+                  const Spacer(),
+                  TextField(
+                    controller: timeinput,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xFFD9D9D9),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
                       ),
-                      endInitialDate: DateTime.now(),
-                      endFirstDate:
-                          DateTime(1600).subtract(const Duration(days: 3652)),
-                      endLastDate: DateTime.now().add(
-                        const Duration(days: 3652),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none,
                       ),
-                      is24HourMode: false,
-                      isShowSeconds: false,
-                      minutesInterval: 1,
-                      secondsInterval: 1,
-                      borderRadius: const BorderRadius.all(Radius.circular(16)),
-                      constraints: const BoxConstraints(
-                        maxWidth: 350,
-                        maxHeight: 650,
+                      icon: const Icon(
+                        Icons.access_time,
+                        color: Colors.black,
                       ),
-                      transitionBuilder: (context, anim1, anim2, child) {
-                        return FadeTransition(
-                          opacity: anim1.drive(
-                            Tween(
-                              begin: 0,
-                              end: 1,
+                      hintText: "Enter Time",
+                    ),
+                    readOnly: true,
+                    onTap: () async {
+                      List<DateTime>? dateTimeList =
+                          await showOmniDateTimeRangePicker(
+                        context: context,
+                        startInitialDate: DateTime.now(),
+                        startFirstDate:
+                            DateTime(1600).subtract(const Duration(days: 3652)),
+                        startLastDate: DateTime.now().add(
+                          const Duration(days: 3652),
+                        ),
+                        endInitialDate: DateTime.now(),
+                        endFirstDate:
+                            DateTime(1600).subtract(const Duration(days: 3652)),
+                        endLastDate: DateTime.now().add(
+                          const Duration(days: 3652),
+                        ),
+                        is24HourMode: false,
+                        isShowSeconds: false,
+                        minutesInterval: 1,
+                        secondsInterval: 1,
+                        borderRadius: const BorderRadius.all(Radius.circular(16)),
+                        constraints: const BoxConstraints(
+                          maxWidth: 350,
+                          maxHeight: 650,
+                        ),
+                        transitionBuilder: (context, anim1, anim2, child) {
+                          return FadeTransition(
+                            opacity: anim1.drive(
+                              Tween(
+                                begin: 0,
+                                end: 1,
+                              ),
                             ),
-                          ),
-                          child: child,
-                        );
-                      },
-                      transitionDuration: const Duration(milliseconds: 200),
-                      barrierDismissible: true,
-                      selectableDayPredicate: (dateTime) {
-                        // Disable 25th Feb 2023
-                        if (dateTime == DateTime(2023, 2, 25)) {
-                          return false;
-                        } else {
-                          return true;
-                        }
-                      },
-                    );
-
+                            child: child,
+                          );
+                        },
+                        transitionDuration: const Duration(milliseconds: 200),
+                        barrierDismissible: true,
+                        selectableDayPredicate: (dateTime) {
+                          // Disable 25th Feb 2023
+                          if (dateTime == DateTime(2023, 2, 25)) {
+                            return false;
+                          } else {
+                            return true;
+                          }
+                        },
+                      );
                     
-                    if (dateTimeList != null) {
-                      String formattedTime = DateFormat('kk:mm').format(dateTimeList[0]);
-                      String formattedDate = DateFormat('yyyy-MM-dd').format(dateTimeList[0]);
-                      setState(() {
-                        timeinput.text = formattedTime;
-                        dateinput.text = formattedDate;
-                      });
-                    }
-                  },
-                ),
-                const Spacer(),
-                ColorChangingButton(
-                  onButtonSelected: _updateSelectedButtonIndex,
-                ),
-              ],
+                      
+                      if (dateTimeList != null) {
+                        String formattedTime = DateFormat('kk:mm').format(dateTimeList[0]);
+                        String formattedDate = DateFormat('yyyy-MM-dd').format(dateTimeList[0]);
+                        setState(() {
+                          timeinput.text = formattedTime;
+                          dateinput.text = formattedDate;
+                        });
+                      }
+                    },
+                  ),
+                  const Spacer(),
+                  ColorChangingButton(
+                    onButtonSelected: _updateSelectedButtonIndex,
+                  ),
+                ],
+              ),
             ),
           ),
           actions: [
@@ -315,7 +318,7 @@ class _HomePageState extends State<HomePage> {
                 if (pin) {
                   isPined = true;
                 }
-
+        
                 setState(() {
                   if (_selectedButtonIndex == 0) {
                     _selectedCategory = categories[Categories.Myself]!;
@@ -326,7 +329,7 @@ class _HomePageState extends State<HomePage> {
                   if (_selectedButtonIndex == 2) {
                     _selectedCategory = categories[Categories.Other]!;
                   }
-
+        
                   //toDoList.add(newItem);
                 });
                 ToDoItem newItem = ToDoItem(
@@ -338,6 +341,22 @@ class _HomePageState extends State<HomePage> {
                 _s.addTask(newItem);
                 readTasks();
                 Navigator.of(context).pop();
+
+                //finding the difference between the current time and the input time
+                DateTime now = DateTime.now();
+                debugPrint('Now: $now');
+                DateTime inputDateTime = DateTime.parse('${dateinput.text} ${timeinput.text}');
+                debugPrint('Input: $inputDateTime');
+                Duration difference = inputDateTime.difference(now);
+                int seconds = difference.inSeconds;
+                debugPrint('Seconds: $seconds');
+                await NotificationService.showNotification(
+                  title: textTitle,
+                  body: 'You have a task to complete',
+                  scheduled: true,
+                  interval: seconds,
+                );
+        
               },
               child: const Text(
                 'Submit',
