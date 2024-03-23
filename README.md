@@ -9,10 +9,15 @@ This Todo-App is a simple yet functional task management application built using
 - **Loading Screen**: Includes a loading screen image for a polished user experience during data retrieval.
 - **Acknowledgment**: Special thanks to GDSC (Google Developer Student Clubs) for inspiring this Flutter project, contributing to my learning journey.
 ## Screenshots
-
-[![Screenshot 1](screenshots/screenshot1.png)](screenshots/screenshot1.png)
-[![Screenshot 2](screenshots/screenshot2.png)](screenshots/screenshot2.png)
-[![Screenshot 3](screenshots/screenshot3.png)](screenshots/screenshot3.png)
+<div align="center">
+  <img src="https://github.com/Sandy-exe/Todo-App-UI/assets/112242304/8c46b0b0-1b9d-42c0-b274-e07ef62d8146" width="200" height="400"/>
+  <img src="https://github.com/Sandy-exe/Todo-App-UI/assets/112242304/78df44fa-3780-4814-9a81-f3100b8cad74" width="200" height="400"/>
+  <img src="https://github.com/Sandy-exe/Todo-App-UI/assets/112242304/a62441f7-3584-4b1c-b572-146b0902ff82" width="200" height="400"/>
+  <img src="https://github.com/Sandy-exe/Todo-App-UI/assets/112242304/2cb2299b-2d5e-4a81-942f-e27c90f42092" width="200" height="400"/>
+  <img src="https://github.com/Sandy-exe/Todo-App-UI/assets/112242304/f86662bf-9b49-47b7-ab8f-ef305da9b1fa" width="200" height="400"/>
+  <img src="https://github.com/Sandy-exe/Todo-App-UI/assets/112242304/32b53b41-c8a3-4023-b246-5a44ed14481f" width="200" height="400"/>
+  <img src="https://github.com/Sandy-exe/Todo-App-UI/assets/112242304/53666dee-ed3f-4edb-b538-b2f1cef413f4" width="200" height="400"/>
+</div>
 
 ## Contribution
 
@@ -22,6 +27,4 @@ Contributions are welcome! If you have any suggestions, improvements, or bug fix
 
 This project is licensed under the [MIT License](LICENSE).
 
----
 
-**Note:** This Todo-App was developed as a practice project to improve Flutter skills, inspired by GDSC's efforts in Flutter development.
