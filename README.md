@@ -7,7 +7,9 @@ This Todo-App is a simple yet functional task management application built using
 - **CRUD Operations**: Users can easily create, read, update, and delete tasks within the app.
 - **Firebase Integration**: Utilizes Firebase Firestore for efficient data storage and synchronization across devices.
 - **Loading Screen**: Includes a loading screen image for a polished user experience during data retrieval.
+- **Notification Feature**: Integrated notification functionality to remind users of upcoming tasks, enhancing productivity and time management.
 - **Acknowledgment**: Special thanks to GDSC (Google Developer Student Clubs) for inspiring this Flutter project, contributing to my learning journey.
+
 ## Screenshots
 <div align="center">
   <img src="https://github.com/Sandy-exe/Todo-App-UI/assets/112242304/8c46b0b0-1b9d-42c0-b274-e07ef62d8146" width="200" height="400"/>
