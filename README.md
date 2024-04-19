@@ -1,4 +1,4 @@
-# Todo-App
+# Bucket-List
 
 This Todo-App is a simple yet functional task management application built using Flutter and Firebase Firestore. It allows users to perform CRUD (Create, Read, Update, Delete) operations on their tasks, providing a seamless task management experience.
 
