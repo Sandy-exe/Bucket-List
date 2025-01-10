@@ -89,10 +89,16 @@ class NotificationService {
     final String? bigPicture,
     final List<NotificationActionButton>? actionButtons,
     final bool scheduled = false,
-    final int? interval,
+     int? interval,
   }) async {
     assert(!scheduled || (scheduled && interval != null));
 
+     Duration? duration = interval != null ? Duration(seconds: interval) : null;
+
+    if (scheduled && (interval == null || interval <= 5)) {
+      interval = 10; // Default to 10 seconds
+    }
+    
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: -1,
@@ -109,7 +115,7 @@ class NotificationService {
       actionButtons: actionButtons,
       schedule: scheduled
           ? NotificationInterval(
-              interval: interval,
+              interval: duration,
               timeZone:
                   await AwesomeNotifications().getLocalTimeZoneIdentifier(),
               preciseAlarm: true,

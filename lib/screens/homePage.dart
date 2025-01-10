@@ -1,5 +1,4 @@
 import 'package:bucket_list/services/notification_services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
@@ -89,12 +88,11 @@ class _HomePageState extends State<HomePage> {
             children: [
               Text(
                 'Task',
-                style: GoogleFonts.poppins(
-                  textStyle: const TextStyle(
+                style: const TextStyle(
                     fontSize: 20,
                     color: Colors.black,
+                    fontFamily: 'RobotoMono'
                   ),
-                ),
               ),
               const Spacer(),
               PinWidget(
@@ -187,14 +185,7 @@ class _HomePageState extends State<HomePage> {
                         },
                         transitionDuration: const Duration(milliseconds: 200),
                         barrierDismissible: true,
-                        selectableDayPredicate: (dateTime) {
-                          // Disable 25th Feb 2023
-                          if (dateTime == DateTime(2023, 2, 25)) {
-                            return false;
-                          } else {
-                            return true;
-                          }
-                        },
+
                       );
                       
                       if (dateTimeList != null) {
@@ -268,14 +259,6 @@ class _HomePageState extends State<HomePage> {
                         },
                         transitionDuration: const Duration(milliseconds: 200),
                         barrierDismissible: true,
-                        selectableDayPredicate: (dateTime) {
-                          // Disable 25th Feb 2023
-                          if (dateTime == DateTime(2023, 2, 25)) {
-                            return false;
-                          } else {
-                            return true;
-                          }
-                        },
                       );
                     
                       
@@ -378,18 +361,18 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(50.0, 50.0, 50.0, 0.0),
+            padding: const EdgeInsets.fromLTRB(50.0, 50.0, 50.0,25.0),
             child: Image.asset('assets/Denji.png'),
           ),
           Text(
             'Create your first task...',
-            style: GoogleFonts.poppins(
-              textStyle: const TextStyle(
+            style: TextStyle(
                 fontSize: 20,
                 color: Colors.black,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
+                
               ),
-            ),
+          
           ),
           const SizedBox(
             height: 10,
@@ -410,11 +393,11 @@ class _HomePageState extends State<HomePage> {
             ),
             label: Text(
               'Add Task',
-              style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
+              style:TextStyle(
                   color: Colors.white,
+
                 ),
-              ),
+              
             ),
           ),
         ],
@@ -443,13 +426,11 @@ class _HomePageState extends State<HomePage> {
             ),
             title: Text(
               'My Bucket List',
-              style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
+              style: TextStyle(
                   fontSize: 25,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
             ),
             elevation: 0,
             backgroundColor: Colors.white,
@@ -552,11 +533,11 @@ class _HomePageState extends State<HomePage> {
                   alignment: Alignment.center,
                   child: Text(
                     "My Tasks",
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
+                    style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        fontFamily: 'RobotoMono'
                       ),
-                    ),
+                   
                   ),
                 ),
               ),
@@ -565,11 +546,11 @@ class _HomePageState extends State<HomePage> {
                   alignment: Alignment.center,
                   child: Text(
                     "Pinned Tasks",
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
+                    style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        fontFamily: 'RobotoMono'
                       ),
-                    ),
+                    
                   ),
                 ),
               ),
