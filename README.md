@@ -25,8 +25,6 @@ This Todo-App is a simple yet functional task management application built using
 
 Contributions are welcome! If you have any suggestions, improvements, or bug fixes, feel free to open an issue or submit a pull request.
 
-<<<<<<< HEAD
 ## To Install
 
 Download "Bucket_list_latest.apk" to Install the APP
-=======
